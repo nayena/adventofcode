@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.12",
+    "ts-node": "^7.0.1"
+  },
+  "scripts": {
+    "go": "ts-node src/day$NUMBER.ts",
+    "repl": "ts-node"
+  }
+}
