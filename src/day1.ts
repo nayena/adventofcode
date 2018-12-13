@@ -11,11 +11,13 @@ var found = false
 
 while (!found) {
     for (const delta of data) {
-        seen[frequency] = true;
         frequency += Number(delta);
-        if (seen[frequency] == true) {
+        if (seen[frequency]) {
             console.log(frequency);
             found = true
+            break
         }
+        seen[frequency] = true;
     }
+    console.log("looped")
 }
