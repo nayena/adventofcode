@@ -1,8 +1,6 @@
 import * as fs from 'fs'
-import * as rd from 'readline'
 import * as path from 'path'
 
-var reader = rd.createInterface(fs.createReadStream("src/inputs/1"))
 const data = fs.readFileSync(path.join(__dirname, './inputs/1'), 'utf-8').split('\n')
 
 let frequency = 0
