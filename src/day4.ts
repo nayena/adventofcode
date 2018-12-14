@@ -43,10 +43,6 @@ for(let line of data){
     }
 }
 
-console.log('----')
-console.log('----')
-console.log('----')
-console.log('----')
 
 let mostSleptGuard = 0
 let mostSleptGuardMinutes = 0
@@ -55,7 +51,7 @@ for(let guard of listOfGuards.filter(function(item, i, ar){ return ar.indexOf(it
     if(sleepGuardTimer[guard] > mostSleptGuardMinutes){
         mostSleptGuard = guard
         mostSleptGuardMinutes = sleepGuardTimer[guard]
-        console.log(`Guard ${guard} slept ${sleepGuardTimer[guard]} minutes`)
+        //console.log(`Guard ${guard} slept ${sleepGuardTimer[guard]} minutes`)
     }
 }
 
@@ -67,11 +63,9 @@ for(let i=0;i<60;i++){
     if(slept > mostSleptMinutes){
         mostSleptMinutes = slept
         mostSleptMinute = i
-        console.log(`Slept more on minute ${i}, which was ${slept} times`)
+        //console.log(`Slept more on minute ${i}, which was ${slept} times`)
     } 
 }
-
-console.log(`Final checksum is ${mostSleptGuard}x${mostSleptMinute} = ${mostSleptGuard*mostSleptMinute}`)
 
 function extractTimeString(line: string){
     return `${line.split(' ')[0]} ${line.split(' ')[1]}`.slice(1,-1)
@@ -81,3 +75,33 @@ function extractSeconds(line: string){
     let timeArray = line.split(':')
     return timeArray[1]
 }
+
+console.log(`Part 1: ${mostSleptGuard}x${mostSleptMinute} = ${mostSleptGuard*mostSleptMinute}`)
+
+let mostSleepyGuard = 0
+let mostSleepyGuardMinute = 0
+let mostSleepyGuardMinutes = 0
+
+for(let id of listOfGuards){
+    mostSleptMinutes = 0
+    mostSleptMinute = 0
+    
+
+    for(let i=0;i<60;i++){
+        let slept = sleepMap[`${id}-${i}`]
+        if(slept > mostSleptMinutes){
+            mostSleptMinutes = slept
+            mostSleptMinute = i
+            //console.log(`Guard ${id} slept more on minute ${i}, which was ${slept} times`)
+        } 
+    }
+
+    if(mostSleptMinutes > mostSleepyGuardMinutes){
+        mostSleepyGuard = id
+        mostSleepyGuardMinute = mostSleptMinute
+        mostSleepyGuardMinutes = mostSleptMinutes
+        //console.log(`Guard ${id} is now the most sleepy one, at ${mostSleepyGuardMinutes} times, at minute ${mostSleepyGuardMinute}`)
+    }
+}
+
+console.log(`Part 1: ${mostSleepyGuard}x${mostSleepyGuardMinute} = ${mostSleepyGuard*mostSleepyGuardMinute}`)
